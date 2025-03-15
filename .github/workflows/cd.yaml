@@ -37,17 +37,3 @@ jobs:
       run: |
         docker compose -f docker-compose.yml build
         docker compose -f docker-compose.yml push
-
-    - name: Deploy to server
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SERVER_IP: ${{ secrets.SERVER_IP }}
-        DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-      run: |
-        echo "$SSH_PRIVATE_KEY" > key.pem
-        chmod 600 key.pem
-        ssh -o StrictHostKeyChecking=no -i key.pem user@$SERVER_IP "
-          docker login -u $DOCKER_HUB_USERNAME -p ${{ secrets.DOCKER_HUB_TOKEN }} &&
-          docker-compose -f /path/to/your/docker-compose.yml pull &&
-          docker-compose -f /path/to/your/docker-compose.yml up -d
-        "
