@@ -17,7 +17,7 @@ services:
     ports:
       - "5010:5000"
     build:
-      context: /backend
+      context: /bot_app
       dockerfile: Dockerfile
   frontend:
     container_name: my-frontend
