@@ -13,16 +13,16 @@ services:
       DATABASE_URL: postgres://postgres:postgres@db:5432/postgres  # Use 'db' instead of 'localhost'
       API_KEY: "EK-utfXc-Vq1QhUf-j355L"
       JWT_SECRET: "mysecret"
-    container_name: my-bun-app
+    container_name: my-app
     ports:
       - "5010:5000"
     build:
-      context: /bot_app
+      context: bot_app
       dockerfile: Dockerfile
   frontend:
     container_name: my-frontend
     ports:
       - "8010:3000"
     build:
-      context: /yenisey_crypto_frontend
+      context: yenisey_crypto_frontend
       dockerfile: Dockerfile
